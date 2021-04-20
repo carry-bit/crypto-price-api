@@ -1,0 +1,19 @@
+{
+    "name": "sajjad/crypto-price-api",
+    "description": "A library for easy access to the current price of digital currencies",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sajjad",
+            "email": "real.fisae@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "CryptoPriceAPI\\": "src/"
+        }
+    },
+    "require": {}
+}
