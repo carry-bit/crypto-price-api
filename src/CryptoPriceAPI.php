@@ -260,21 +260,21 @@ class CryptoPriceAPI
                 case 0:
                     // Price:
                     preg_match('/<td>\$(.*)<\/td>/i', $rowData, $tempArray);
-                    $organizedData["price"] = ($tempArray[1]) ? floatval($tempArray[1]) : false;
+                    $organizedData["price"] = ($tempArray[1]) ? floatval(str_replace(',', '', $tempArray[1])) : false;
                     break;
 
                 case 1:
                     // Price Change:
                     preg_match('/<span>\$(.*)<\/span><div>/i', $rowData, $tempArray);
-                    $organizedData["priceChange"] = ($tempArray[1]) ? floatval($tempArray[1]) : false;
+                    $organizedData["priceChange"] = ($tempArray[1]) ? floatval(str_replace(',', '', $tempArray[1])) : false;
                     break;
 
                 case 2:
                     // 24HourLow and 24HourHigh
                     // extracting low and high length in two separated groups
                     preg_match('/<div>\$(.*)<!.*\$(.*)<\/div/i', $rowData, $tempArray);
-                    $organizedData["_24HourLow"] = ($tempArray[1]) ? floatval($tempArray[1]) : false;
-                    $organizedData["_24HourHigh"] = ($tempArray[2]) ? floatval($tempArray[2]) : false;
+                    $organizedData["_24HourLow"] = ($tempArray[1]) ? floatval(str_replace(',', '', $tempArray[1])) : false;
+                    $organizedData["_24HourHigh"] = ($tempArray[2]) ? floatval(str_replace(',', '', $tempArray[2])) : false;
                     break;
 
                 case 3:
@@ -286,19 +286,19 @@ class CryptoPriceAPI
                 case 4:
                     // Volume / Market Cap
                     preg_match('/td>(.*)<\/td/i', $rowData, $tempArray);
-                    $organizedData["marketCap"] = ($tempArray[1]) ? floatval($tempArray[1]) : false;
+                    $organizedData["marketCap"] = ($tempArray[1]) ? floatval(str_replace(',', '', $tempArray[1])) : false;
                     break;
 
                 case 5:
                     // Market Dominance
                     preg_match('/span .*>(.*)<!/i', $rowData, $tempArray);
-                    $organizedData["dominance"] = ($tempArray[1]) ? floatval($tempArray[1]) : false;
+                    $organizedData["dominance"] = ($tempArray[1]) ? floatval(str_replace(',', '', $tempArray[1])) : false;
                     break;
 
                 case 6:
                     // Market Rank
                     preg_match('/td>#(.*)<\/td/i', $rowData, $tempArray);
-                    $organizedData["rank"] = ($tempArray[1]) ? floatval($tempArray[1]) : false;
+                    $organizedData["rank"] = ($tempArray[1]) ? floatval(str_replace(',', '', $tempArray[1])) : false;
                     break;
             }
         }
