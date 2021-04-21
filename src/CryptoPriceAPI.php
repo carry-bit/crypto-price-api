@@ -7,6 +7,8 @@ class ResponseData
 {
     private $data = null;
 
+    private $cors = false;
+
     public function __construct($data = null)
     {
         $this->data = $data;
@@ -14,12 +16,30 @@ class ResponseData
 
     public function toPlain()
     {
+        if ($this->cors) $this->setCorsHeaders();
+
         return $this->data;
     }
 
     public function toJson()
     {
+        if ($this->cors) $this->setCorsHeaders();
+
         return json_encode($this->data);
+    }
+
+    /**
+     * @param bool $cors
+     */
+    public function setCors($cors)
+    {
+        $this->cors = $cors;
+    }
+
+    private function setCorsHeaders() {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, OPTIONS");
+        header("Access-Control-Allow-Headers: *");
     }
 }
 
